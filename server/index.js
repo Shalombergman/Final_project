@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 // Therapist routes
-app.get('/api/therapists/', async (req, res) => {
+app.get('/api/therapists', async (req, res) => {
     try {
         const therapists = await db.getTherapists();
         res.send(therapists);
@@ -15,8 +15,8 @@ app.get('/api/therapists/', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-console.log("yigkujh")
-app.get('/api/therapists/:id/', async (req, res) => {
+
+app.get('/api/therapists/:id', async (req, res) => {
     try {
         const therapist = await db.getTherapistById(req.params.id);
         if (!therapist) return res.status(404).send('Therapist not found');
@@ -26,7 +26,7 @@ app.get('/api/therapists/:id/', async (req, res) => {
     }
 });
 
-app.post('/api/therapists/', async (req, res) => {
+app.post('/api/therapists', async (req, res) => {
     try {
         const therapist = await db.createTherapist(req.body);
         res.status(201).send(therapist);
@@ -35,7 +35,7 @@ app.post('/api/therapists/', async (req, res) => {
     }
 });
 
-app.put('/api/therapists/:id/', async (req, res) => {
+app.put('/api/therapists/:id', async (req, res) => {
     try {
         const result = await db.updateTherapist(req.params.id, req.body);
         if (!result) return res.status(404).send('Therapist not found');
@@ -45,7 +45,7 @@ app.put('/api/therapists/:id/', async (req, res) => {
     }
 });
 
-app.delete('/api/therapists/:id/', async (req, res) => {
+app.delete('/api/therapists/:id', async (req, res) => {
     try {
         const result = await db.deleteTherapist(req.params.id);
         if (!result) return res.status(404).send('Therapist not found');
@@ -56,7 +56,7 @@ app.delete('/api/therapists/:id/', async (req, res) => {
 });
 
 // Appointment routes
-app.get('/api/appointments/', async (req, res) => {
+app.get('/api/appointments', async (req, res) => {
     try {
         const appointments = await db.getAppointments();
         res.send(appointments);
@@ -65,7 +65,7 @@ app.get('/api/appointments/', async (req, res) => {
     }
 });
 
-app.get('/api/appointments/:id/', async (req, res) => {
+app.get('/api/appointments/:id', async (req, res) => {
     try {
         const appointment = await db.getAppointmentById(req.params.id);
         if (!appointment) return res.status(404).send('Appointment not found');
@@ -75,20 +75,21 @@ app.get('/api/appointments/:id/', async (req, res) => {
     }
 });
 
-app.post('/api/appointments/', async (req, res) => {
+app.post('/api/appointments', async (req, res) => {
     try {
         const appointment = await db.createAppointment(req.body);
         res.status(201).send(appointment);
     } catch (error) {
-        if (error.message === `appointment solt already booked`) {
+        if (error.message === 'Appointment slot already booked') {
             res.status(409).send(error.message);
-        }else {
-        res.status(500).send(error.message);
+        } else{
+            res.status(500).send(error.message);
         }
+        
     }
 });
 
-app.put('/api/appointments/:id/', async (req, res) => {
+app.put('/api/appointments/:id', async (req, res) => {
     try {
         const result = await db.updateAppointment(req.params.id, req.body);
         if (!result) return res.status(404).send('Appointment not found');
@@ -98,7 +99,7 @@ app.put('/api/appointments/:id/', async (req, res) => {
     }
 });
 
-app.delete('/api/appointments/:id/', async (req, res) => {
+app.delete('/api/appointments/:id', async (req, res) => {
     try {
         const result = await db.deleteAppointment(req.params.id);
         if (!result) return res.status(404).send('Appointment not found');
@@ -108,54 +109,74 @@ app.delete('/api/appointments/:id/', async (req, res) => {
     }
 });
 
-// Patients routes
-app.get('/api/patients/', async (req, res) => {
+// paietnt routes
+
+app.post("/api/login", async (req,res) => {
+    try{
+        const user = await db.getpaietnt(req.body.username,req.body.password)
+        if(!user){
+            res.status(404).send("user not found")
+            return
+        }
+        res.status(200).send(user)
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send(error.message)
+    }
+    
+})
+
+app.get("/api/paietnt/",async (req,res) => {
+    try{
+        const paietnt = await db.getPatientsName()
+        res.send(paietnt)
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send(error.message)
+    }
+})
+
+app.get('/api/paietnt/:id', async (req, res) => {
     try {
-        const patients = await db.getPitientsName();
-        res.send(patients);
+        const paietnt = await db.getPatientNameById(req.params.id);
+        if (!paietnt) return res.status(404).send('paietnt not found');
+        res.send(paietnt);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+app.post('/api/paietnt/', async (req, res) => {
+    try {
+        const paietnt = await db.createPatientName(req.body);
+        res.status(201).send(paietnt);
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
 
-app.get('/api/patients/:id/', async (req, res) => {
+app.put('/api/paietnt/:id', async (req, res) => {
     try {
-        const patients = await db.getPitientsNameById(req.params.id);
-        if (!patients) return res.status(404).send('Patients not found');
-        res.send(patients);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-app.post('/api/patients/', async (req, res) => {
-    try {
-        const patients = await db.createPitientsName(req.body);
-        res.status(201).send(patients);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-});
-
-app.put('/api/patients/:id/', async (req, res) => {
-    try {
-        const result = await db.updatePitientsName(req.params.id, req.body);
-        if (!result) return res.status(404).send('Patients not found');
+        const result = await db.updatePatientsName(req.params.id, req.body);
+        if (!result) return res.status(404).send('paietnt not found');
         res.status(204).send();
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
 
-app.delete('/api/patients/:id/', async (req, res) => {
+
+app.delete('/api/paietnt/:id', async (req, res) => {
     try {
-        const result = await db.deletePitientsName(req.params.id);
-        if (!result) return res.status(404).send('Patients not found');
+        const result = await db.deletePatientName(req.params.id);
+        if (!result) return res.status(404).send('paietnt not found');
         res.status(204).send();
     } catch (error) {
         res.status(500).send(error.message);
     }
 });
+
 
 
 const port = 8080;
