@@ -1,12 +1,25 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
+const path = require('path')
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-// Therapist routes
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index1.html'));
+});
+
+app.get('/screen/2', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index2.html'));
+});
+
+app.get('/screen/3', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index3.html'));
+});
+
 app.get('/api/therapists/', async (req, res) => {
     try {
         const therapists = await db.getTherapists();
