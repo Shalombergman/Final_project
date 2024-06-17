@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment System</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .search-container, .select-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Appointment System</h1>
+    
+    <div class="select-container">
+        <label for="specialtySelect">Select Specialty:</label>
+        <select id="specialtySelect">
+            <option value="">--Select a specialty--</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Orthopedics">Orthopedics</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Gastroenterology">Gastroenterology</option>
+            <option value="Urology">Urology</option>
+            <option value="Ophthalmology">Ophthalmology</option>
+            <option value="Rheumatology">Rheumatology</option>
+            <option value="Endocrinology">Endocrinology</option>
+        </select>
+        <button onclick="selectSpecialty()">Select</button>
+    </div>
+
+    <div class="search-container">
+        <label for="doctorSearch">Search by Doctor:</label>
+        <input type="text" id="doctorSearch" placeholder="Enter doctor's name">
+        <button onclick="searchDoctors()">Search</button>
+    </div>
+
+    <h2>Doctors</h2>
+    <table id="doctorsTable">
+        <thead>
+            <tr>
+                <th>Doctor's Name</th>
+                <th>Specialty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Dr. Smith</td><td>Cardiology</td></tr>
+            <tr><td>Dr. Johnson</td><td>Neurology</td></tr>
+            <tr><td>Dr. Williams</td><td>Orthopedics</td></tr>
+            <tr><td>Dr. Brown</td><td>Pediatrics</td></tr>
+            <tr><td>Dr. Jones</td><td>Dermatology</td></tr>
+            <tr><td>Dr. Miller</td><td>Gastroenterology</td></tr>
+            <tr><td>Dr. Davis</td><td>Urology</td></tr>
+            <tr><td>Dr. Garcia</td><td>Ophthalmology</td></tr>
+            <tr><td>Dr. Martinez</td><td>Rheumatology</td></tr>
+            <tr><td>Dr. Rodriguez</td><td>Endocrinology</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function searchDoctors() {
+            const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
+            filterTable('doctorsTable', searchTerm, 0); // Search only in the first column (Doctor's Name)
+        }
+
+        function selectSpecialty() {
+            const selectedSpecialty = document.getElementById('specialtySelect').value.toLowerCase();
+            filterTable('doctorsTable', selectedSpecialty, 1); // Search only in the second column (Specialty)
+        }
+
+        function filterTable(tableId, searchTerm, columnIndex) {
+            const table = document.getElementById(tableId);
+            const rows = table.getElementsByTagName('tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const cell = cells[columnIndex];
+                if (cell && cell.innerText.toLowerCase().includes(searchTerm)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
