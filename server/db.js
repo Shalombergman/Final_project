@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { error } = require('server/router');
 const Schema = mongoose.Schema;
 
 const dbName = 'therapyDB';

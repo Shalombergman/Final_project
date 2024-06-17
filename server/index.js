@@ -15,7 +15,7 @@ app.get('/api/therapists/', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
+console.log("yigkujh")
 app.get('/api/therapists/:id/', async (req, res) => {
     try {
         const therapist = await db.getTherapistById(req.params.id);
