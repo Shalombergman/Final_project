@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "666ec8bc9de0c7dee91b7265"
+  },
+  "name": "Dr.smyth",
+  "specialization": "Cardiology",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666ec9e79b554f153209e537"
+  },
+  "name": "Dr.brown",
+  "specialization": "Padiatrics"
+},
+{
+  "_id": {
+    "$oid": "666eca699b554f153209e539"
+  },
+  "name": "Dr.Davis",
+  "specialization": "Allergy"
+},
+{
+  "_id": {
+    "$oid": "666ecb599b554f153209e53b"
+  },
+  "name": "Dr.Cohen",
+  "specialization": "Psychiatry"
+},
+{
+  "_id": {
+    "$oid": "666ecd129b554f153209e53d"
+  },
+  "name": "Dr.Ruvy",
+  "specialization": "Social work"
+},
+{
+  "_id": {
+    "$oid": "666ecd129b554f153209e53e"
+  },
+  "name": "Dr.shimon",
+  "specialization": "Clinical Psychology"
+}]
