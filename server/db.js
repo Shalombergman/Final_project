@@ -5,35 +5,32 @@ const dbName = 'therapyDB';
 
 async function main() {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/' + dbName, {
-            // useNewUrlParser: true,
-            // useUnifiedTopology: true
+        await mongoose.connect("mongodb://localhost:27017/" + dbName, {
         });
         console.log('Connected to MongoDB');
     } catch (error) {
         console.error('Connection error', error);
     }
 }
+const patientsSchema = new Schema({
+    name:{type:String,required:true},
+    password:{type:String,required:true}
+})
 
 const therapistSchema = new Schema({
     name: { type: String, required: true },
     specialization: { type: String, required: true },
-    contact: { type: String, required: true }
 });
-const patientsSchema = new Schema ({
-    name: { type: String, required: true},
-    password: { type: String, required: true}
-})
 
 const appointmentSchema = new Schema({
-    therapistId: { type: mongoose.Types.ObjectId, ref: 'Therapist', required: true },
-    date: { type: Date, required: true, unique: true },
+    therapistName: { type: String, required: true },
+    date: { type: Date, required: true,unique: true },
     patientName: { type: String, required: true }
 });
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
-const Patients = mongoose.model('patients', patientsSchema);
-const Appointment = mongoose.model('Appointment', appointmentSchema);   
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+const patients = mongoose.model("patientName",patientsSchema)
 
 
 async function getTherapists() {
@@ -59,7 +56,7 @@ async function deleteTherapist(therapistId) {
 }
 
 async function getAppointments() {
-    return await Appointment.find().populate('therapistId');
+     return await Appointment.find().populate('therapistId');
 }
 
 async function getAppointmentById(appointmentId) {
@@ -69,13 +66,14 @@ async function getAppointmentById(appointmentId) {
 async function createAppointment(newAppointment) {
     try{
         return await Appointment.create(newAppointment);
-    }catch(error){
-        if (error.code === 11000){
-            throw new error(`appointment solt already booked`);
-        }
-        throw error;
-
     }
+    catch(error){
+        if(error.code === 11000){
+            throw new Error("Appointment slot already booked")
+        }
+        console.log(error);
+    }
+    
 }
 
 async function updateAppointment(appointmentId, updatedFields) {
@@ -87,29 +85,38 @@ async function deleteAppointment(appointmentId) {
     const result = await Appointment.deleteOne({ _id: appointmentId });
     return result.deletedCount === 1;
 }
-async function getPitientsName() {
-    return await Patients.find();
+
+async function getpaietnt(paietntName,password){
+    return await patients.findOne({"username":paietntName,"password":password})
+}
+async function getPatientsName() {
+    return await patients.find();
 }
 
-async function getPitientsNameById(pitientsNameId) {
-    return await Patients.findById(pitientsNameId);
+async function getPatientNameById(patientId) {
+    return await patients.findById(patientId);
 }
 
-async function createPitientsName(newPitientsName) {
-    return await Patients.create(newPitientsName);
+async function createPatientName(newPatientName) {
+    return await patients.create(newPatientName);
 }
 
-async function updatePitientsName(pitientsNameId, updatedFields) {
-    const result = await Patients.updateOne({ _id: pitientsNameId }, { $set: updatedFields });
+async function updatePatientsName(patientId, newDetels) {
+    const result = await patients.updateOne({ _id: patientId }, { $set: newDetels });
     return result.modifiedCount === 1;
 }
 
-async function deletePitientsName(pitientsNameId) {
-    const result = await Patients.deleteOne({ _id: pitientsNameId });
+async function deletePatientName(patientId) {
+    const result = await patients.deleteOne({ _id: patientId });
     return result.deletedCount === 1;
 }
-
 main();
+// createPatientName({name:"moshe",password:"345tyu"})
+//  createAppointment({therapistName:"jkcob",date:new Date('2024-06-16T10:00:00Z'),patientName:"hri"})
+// createTherapist({name:"Dr.smyth",specialization:"Cardiology"})
+
+
+
 
 module.exports = {
     getTherapists,
@@ -122,10 +129,10 @@ module.exports = {
     createAppointment,
     updateAppointment,
     deleteAppointment,
-    getPitientsName,
-    getPitientsNameById,
-    createPitientsName,
-    updatePitientsName,
-    deletePitientsName
-
+    getPatientsName,
+    getPatientNameById,
+    createPatientName,
+    updatePatientsName,
+    deletePatientName,
+    getpaietnt
 };
