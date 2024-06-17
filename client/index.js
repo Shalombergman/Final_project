@@ -1,13 +1,15 @@
 //const submit = document.getElementById("submit")
 //const reset = document.getElementById("reset")
 
+const { log } = require("console");
+
 // מערך מדומה של שמות משתמשים וסיסמאות
 const users = [
     { username: 'user1', password: 'pass1' },
     { username: 'user2', password: 'pass2' },
     { username: 'user3', password: 'pass3' }
 ];
-
+console.log("dsdd")
 document.getElementById('submit').addEventListener('click', function(event) {
     event.preventDefault(); // מניעת שליחת הטופס בצורה הרגילה
 
