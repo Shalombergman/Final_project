@@ -50,7 +50,7 @@
         <button onclick="searchDoctors()">Search</button>
     </div>
 
-    <h2>Doctors</h2>
+    <h2 id="h2">Doctors</h2>
     <table id="doctorsTable">
         <thead>
             <tr>
@@ -58,8 +58,8 @@
                 <th>Specialty</th>
             </tr>
         </thead>
-        <tbody>
-            <tr><td>Dr. Smith</td><td>Cardiology</td></tr>
+        <tbody id="duc">
+            <!-- <tr><td>Dr. Smith</td><td>Cardiology</td></tr>
             <tr><td>Dr. Johnson</td><td>Neurology</td></tr>
             <tr><td>Dr. Williams</td><td>Orthopedics</td></tr>
             <tr><td>Dr. Brown</td><td>Pediatrics</td></tr>
@@ -68,31 +68,11 @@
             <tr><td>Dr. Davis</td><td>Urology</td></tr>
             <tr><td>Dr. Garcia</td><td>Ophthalmology</td></tr>
             <tr><td>Dr. Martinez</td><td>Rheumatology</td></tr>
-            <tr><td>Dr. Rodriguez</td><td>Endocrinology</td></tr>
+            <tr><td>Dr. Rodriguez</td><td>Endocrinology</td></tr> -->
         </tbody>
     </table>
 
-    <script>
-        function searchDoctors() {
-            const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
-            filterTable('doctorsTable', searchTerm, 0); // Search only in the first column (Doctor's Name)
-        }
-
-        function selectSpecialty() {
-            const selectedSpecialty = document.getElementById('specialtySelect').value.toLowerCase();
-            filterTable('doctorsTable', selectedSpecialty, 1); // Search only in the second column (Specialty)
-        }
-
-        function filterTable(tableId, searchTerm, columnIndex) {
-            const table = document.getElementById(tableId);
-            const rows = table.getElementsByTagName('tr');
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                const cell = cells[columnIndex];
-                if (cell && cell.innerText.toLowerCase().includes(searchTerm)) {
-                    rows[i].style.display = '';
-                } else {
-                    rows[i].style.display = 'none';
-                }
-            }
-        }
+    <script src="index2.js"></script>
+    
+        
+    </body>
