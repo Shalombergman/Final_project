@@ -16,7 +16,6 @@ const patientsSchema = new Schema({
     username:{type:String,required:true},
     password:{type:String,required:true}
 })
-
 const therapistSchema = new Schema({
     name: { type: String, required: true },
     specialization: { type: String, required: true },

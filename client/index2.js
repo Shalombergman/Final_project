@@ -24,7 +24,9 @@ function filterTable(tableId, searchTerm, columnIndex) {
     const data = await fetch('http://localhost:8080/api/therapists')
     const duc = await data.json()
     pushDuc(duc);
-}
+    pushSpecialization(duc);
+    }
+
  getdoc();
 
 
@@ -32,10 +34,18 @@ function filterTable(tableId, searchTerm, columnIndex) {
 function pushDuc(doc){
     const Ductors = document.getElementById("duc")
     for(let i in doc){
-        console.log(doc[i].name);
+        // console.log(doc[i].name);
         d = doc[i].name
         a = doc[i].specialization
-        Ductors.innerHTML += `<tr><td>${d}</td><td>${a}</td></tr>` 
+        Ductors.innerHTML += `<tr><td>${d}</td><td>${a}</td><td><a href="index3.html">to make an Appointment</a></td></tr>` 
     }
+}
+function pushSpecialization(doc){
+    const spe = document.getElementById("specialtySelect")
+    for(let i in doc){
+        let a = doc[i].specialization
+        spe.innerHTML += `<option value=${a}>${a}</option>`
+    }
+
 }
 
