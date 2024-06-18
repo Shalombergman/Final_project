@@ -19,7 +19,7 @@ form, .search-container, .select-container, .doctor-card {
     margin: 20px auto;
     background: #fff;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
     border-radius: 10px;
 }
 
@@ -129,7 +129,11 @@ tr.unavailable {
 #h2{
     text-align: center;
 }
-/* #continue{
+#jk{
+    width: 100%;
+    text-align: center;
+}
+#continue{
 
 text-align: center;
 padding: 10px;
@@ -137,4 +141,4 @@ width: 10%;
 font-size: large;
 margin: auto;
 
-} */
+}
