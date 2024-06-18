@@ -36,6 +36,8 @@ async function getUserName(username, password){
     .then(response => response.json())
     .then(data => {
         if (data.username ) {
+
+            localStorage.setItem("user",JSON.stringify(data))
             window.location.href = 'index2.html';
         } else {
             alert('Invalid username or password.');

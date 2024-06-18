@@ -1,3 +1,5 @@
+
+
 function searchDoctors() {
     const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
     filterTable('doctorsTable', searchTerm, 0); // Search only in the first column (Doctor's Name)
@@ -20,32 +22,50 @@ function filterTable(tableId, searchTerm, columnIndex) {
             rows[i].style.display = 'none';
         }
     }
-}async function getdoc(){
+} async function getdoc() {
     const data = await fetch('http://localhost:8080/api/therapists')
     const duc = await data.json()
     pushDuc(duc);
     pushSpecialization(duc);
-    }
+}
 
- getdoc();
+getdoc();
 
 
 
-function pushDuc(doc){
+function pushDuc(doc) {
     const Ductors = document.getElementById("duc")
-    for(let i in doc){
+    for (let i in doc) {
         // console.log(doc[i].name);
         d = doc[i].name
         a = doc[i].specialization
-        Ductors.innerHTML += `<tr><td>${d}</td><td>${a}</td><td><a href="index3.html">to make an Appointment</a></td></tr>` 
+        Ductors.innerHTML += `<tr><td>${d}</td><td>${a}</td><td><a  id = "${i}" href="index3.html">to make an Appointment</a></td></tr>`
     }
+    for (let i in doc) {
+        let y = document.getElementById(i);
+        if (y) {
+            y.addEventListener("click", function (event) {
+                event.preventDefault(); 
+                save(doc[i]); 
+            });
+        } else {
+            console.error(`not found ${i}` );
+        }
+    }
+
+
+
 }
-function pushSpecialization(doc){
+function pushSpecialization(doc) {
     const spe = document.getElementById("specialtySelect")
-    for(let i in doc){
+    for (let i in doc) {
         let a = doc[i].specialization
         spe.innerHTML += `<option value=${a}>${a}</option>`
     }
 
+}
+function save(doctor) {
+    localStorage.setItem("x", JSON.stringify(doctor))
+    window.location.href = "index3.html"
 }
 
