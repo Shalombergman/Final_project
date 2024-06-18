@@ -65,7 +65,7 @@ function pushSpecialization(doc) {
 
 }
 function save(doctor) {
-    localStorage.setItem("x", JSON.stringify(doctor))
+    localStorage.setItem("doctor", JSON.stringify(doctor))
     window.location.href = "index3.html"
 }
 

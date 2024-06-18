@@ -88,6 +88,16 @@ app.get('/api/appointments/:id', async (req, res) => {
     }
 });
 
+
+app.get('/api/appointments/:id/:day', async (req,res) => {
+    try{
+        const appointment = await db.getAppointmentsByDay(req.params.day,req.params.id)
+        res.send(appointment);
+    }catch(error){
+        res.status(500).send(error.message)
+    }
+})
+
 app.post('/api/appointments', async (req, res) => {
     try {
         const appointment = await db.createAppointment(req.body);

@@ -23,7 +23,7 @@ const therapistSchema = new Schema({
 
 const appointmentSchema = new Schema({
     therapistId: { type: String, required: true },
-    date: { type: Date, required: true,unique: true },
+    date: { type: String, required: true,unique: true },
     meetTime: {type:String,required:true},
     patientId: { type: String, required: true }
 });
@@ -57,6 +57,11 @@ async function deleteTherapist(therapistId) {
 
 async function getAppointments() {
      return await Appointment.find().populate('therapistId');
+
+}
+
+async function getAppointmentsByDay(therapistId,day){
+    return await Appointment.find({data:day,therapistId:therapistId})
 }
 
 async function getAppointmentById(appointmentId) {
@@ -134,5 +139,6 @@ module.exports = {
     createPatientName,
     updatePatientsName,
     deletePatientName,
-    getpaietnt
+    getpaietnt,
+    getAppointmentsByDay
 };
