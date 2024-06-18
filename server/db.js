@@ -22,9 +22,10 @@ const therapistSchema = new Schema({
 });
 
 const appointmentSchema = new Schema({
-    therapistName: { type: String, required: true },
+    therapistId: { type: String, required: true },
     date: { type: Date, required: true,unique: true },
-    patientName: { type: String, required: true }
+    meetTime: {type:String,required:true},
+    patientId: { type: String, required: true }
 });
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
