@@ -4,7 +4,7 @@ document.getElementById('submit').addEventListener('click', function(event) {
     event.preventDefault(); 
     
     const username = document.getElementById('Username').value;
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('Password').value;
     getUserName(username,password)
     
 });

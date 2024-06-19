@@ -4,32 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index1.css">
 </head>
 <body>
-    <h1>Welcome to the Mental Heaith Institute</h1>
+    <h1>Welcome to the Mental Health Institute</h1>
     <h2 id="h2">Please login:</h2>
-    <div class="imeg">
-    </div>
-    <form>
-    <div>
-        <label>user name</label><br>
-        <input type="text" id="Username" placeholder="Username" name="Username">
-
-    </div><br>
-    <div>
-        <label>password</label><br>
-        <input type="password" id="password" placeholder="password" name="password">
-
-    </div><br>
-    <div>
-        <button id ="submit" type="submit">submit</button>
-    </div><br>
-    <div>
-        <button id="reset" type="reset">reset</button>
-    </div>
     
-    </form>
+    <div class="container">
+        <div class="form-container">
+            <h3>Patient Login</h3>
+            <form>
+                <div>
+                    <label>Username</label><br>
+                    <input type="text" id="Username" placeholder="Username" name="patientUsername">
+                </div><br>
+                <div>
+                    <label>Password</label><br>
+                    <input type="password" id="Password" placeholder="Password" name="patientPassword">
+                </div><br>
+                <div>
+                    <button id="submit" type="submit">Submit</button>
+                </div><br>
+                <div>
+                    <button id="patientReset" type="reset">Reset</button><br><br>
+                </div>
+                <div>
+                    <button id="newPatient" type="button" onclick="window.location.href='index0.html'">New Patient</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- <div class="form-container">
+            <h3>Doctor Login</h3>
+            <form>
+                <div>
+                    <label>Username</label><br>
+                    <input type="text" id="doctorUsername" placeholder="Username" name="doctorUsername">
+                </div><br>
+                <div>
+                    <label>Password</label><br>
+                    <input type="password" id="doctorPassword" placeholder="Password" name="doctorPassword">
+                </div><br>
+                <div>
+                    <button id="doctorSubmit" type="submit">Submit</button>
+                </div><br>
+                <div>
+                    <button id="doctorReset" type="reset">Reset</button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+
     <script src="index.js"></script>
 </body>
 </html>
