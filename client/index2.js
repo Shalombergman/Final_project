@@ -1,6 +1,6 @@
 const username = document.getElementById("h2")
 const det = JSON.parse(localStorage.getItem("user"))
-username.innerText = `HI:${det.username}`
+username.innerText = `Hi:${det.username}`
 
 function searchDoctors() {
     const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
@@ -15,6 +15,7 @@ function selectSpecialty() {
 function filterTable(tableId, searchTerm, columnIndex) {
     const table = document.getElementById(tableId);
     const rows = table.getElementsByTagName('tr');
+    let counter = 1
     for (let i = 1; i < rows.length; i++) {
         const cells = rows[i].getElementsByTagName('td');
         const cell = cells[columnIndex];
@@ -22,7 +23,11 @@ function filterTable(tableId, searchTerm, columnIndex) {
             rows[i].style.display = '';
         } else {
             rows[i].style.display = 'none';
+            counter ++
         }
+    }
+    if(counter == rows.length){
+        alert("no such doctor")
     }
 } async function getdoc() {
     const data = await fetch('http://localhost:8080/api/therapists')

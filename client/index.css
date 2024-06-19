@@ -8,14 +8,6 @@ body {
     
         
 }
-.imeg{
-    background-image: url("download.jpeg");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 500px;
-    background-color: #cccccc;
-    background-size: cover;
-}
 
 
 h1 {

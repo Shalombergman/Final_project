@@ -78,52 +78,9 @@ async function add(houer) {
         body: JSON.stringify(data)
     })
      const res = await response.json()
-     console.log(res);
+     if(response.status == 201){
+        alert("The appointment was successfully set")
+        window.location.href = "index4.html"
+     }
+    //  console.log(res);
 }
-
-
-
-// Dummy data for unavailable slots
-//  const unavailableSlots = {
-//     "2024-06-20": ["09:00", "10:00", "14:00"],
-//     "2024-06-21": ["11:00", "13:00"],
-//     "2024-06-22": ["09:00", "12:00", "15:00"],
-// };
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const selectedValue = localStorage.getItem('selectedValue');
-//     const [doctorName, doctorSpecialty] = selectedValue.split('\n');
-
-//     document.getElementById('doctorName').innerText = doctorName.trim();
-//     document.getElementById('doctorSpecialty').innerText = doctorSpecialty.trim();
-
-//     const dateInput = document.getElementById('date');
-//     const unavailableList = document.getElementById('unavailableList');
-
-//     dateInput.addEventListener('change', () => {
-//         const selectedDate = dateInput.value;
-//         unavailableList.innerHTML = '';
-
-//         if (unavailableSlots[selectedDate]) {
-//             unavailableSlots[selectedDate].forEach(time => {
-//                 const listItem = document.createElement('li');
-//                 listItem.innerText = `${selectedDate} ${time}`;
-//                 listItem.classList.add('unavailable');
-//                 unavailableList.appendChild(listItem);
-//             });
-//         }
-//     });
-
-//     document.getElementById('scheduleForm').addEventListener('submit', function(event) {
-//         event.preventDefault();
-//         const date = document.getElementById('date').value;
-//         const time = document.getElementById('time').value;
-
-//         if (unavailableSlots[date] && unavailableSlots[date].includes(time)) {
-//             alert('The selected date and time are unavailable. Please choose another slot.');
-//         } else {
-//             alert(`Appointment scheduled on ${date} at ${time} with ${doctorName}`);
-//             // כאן תוכל להוסיף קוד לשליחת הנתונים לשרת או לטפל במידע כפי שתרצה
-//         }
-//     });
-// });

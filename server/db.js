@@ -64,7 +64,6 @@ async function getAppointments() {
 async function getAppointmentsByDay(therapistId, day) {
     try {
         const appointments = await Appointment.find({ date: day, therapistId: therapistId }).exec();
-        console.log(appointments);
         return appointments;
     } catch (err) {
         console.error(err);
@@ -72,27 +71,16 @@ async function getAppointmentsByDay(therapistId, day) {
     }
 }
 
-// async function getAppointmentsByDay(therapistId,day){
-//     // return await Appointment.find({data:day,therapistId:therapistId})
-//   let  appointment = Appointment.find({date:data,}) 
-// }
 
 async function getAppointmentById(appointmentId) {
     return await Appointment.findById(appointmentId).populate('therapistId');
 }
+async function getAppoinmentsBypatientId(patientId){
+    return await Appointment.find({patientId:patientId}).exec()
+}
 
 async function createAppointment(newAppointment) {
-    return await Appointment.create(newAppointment)
-    // try{
-    //     return await Appointment.create(newAppointment);
-    // }
-    // catch(error){
-    //     if(error.code === 11000){
-    //         throw new Error("Appointment slot already booked")
-    //     }
-    //     console.log(error);
-    // }
-    
+    return await Appointment.create(newAppointment)   
 }
 
 async function updateAppointment(appointmentId, updatedFields) {
@@ -130,10 +118,6 @@ async function deletePatientName(patientId) {
     return result.deletedCount === 1;
 }
 main();
-// createPatientName({name:"moshe",password:"345tyu"})
-//  createAppointment({therapistName:"jkcob",date:new Date('2024-06-16T10:00:00Z'),patientName:"hri"})
-// createTherapist({name:"Dr.smyth",specialization:"Cardiology"})
-
 
 
 
@@ -154,5 +138,6 @@ module.exports = {
     updatePatientsName,
     deletePatientName,
     getpaietnt,
-    getAppointmentsByDay
+    getAppointmentsByDay,
+    getAppoinmentsBypatientId
 };
