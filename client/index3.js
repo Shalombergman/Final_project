@@ -20,12 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function getTime(e) {
     let day = e.target.value
-    console.log(day);
+    // console.log(day);
     try {
         const det = JSON.parse(localStorage.getItem("doctor"))
         const response = await fetch(`http://localhost:8080/api/appointments/${det._id}/${day}`)
         const data = await response.json()
         makeListTime(data)
+        console.log(data);
     }
     catch (error) {
         console.log(error);
@@ -39,9 +40,13 @@ function makeListTime(listHuers) {
     const ul = document.getElementById("listTime")
     for (let i = 8; i < 18; i++) {
         let isT;
-        isT = listHuers.find((meet) => { Number(meet.meetTime) == i })
+        isT = listHuers.find((meet) => { 
+            
+           return Number(meet.meetTime) == i
+         })
+        console.log(isT);
         if (isT) {
-            `<li><button  onsubmit="true">${i}:00 akipide</button></li>`
+            ul.innerHTML += `<li>${i}:00 akipide</li>`
         }
         else { ul.innerHTML += `<li>${i}:00<button id ="${i}">Scheduled</button></li>` }
     }
@@ -54,7 +59,7 @@ function makeListTime(listHuers) {
 
             });
         } else {
-            console.error(`not found ${i}`);
+           
         }
     }
 }

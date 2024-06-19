@@ -61,9 +61,21 @@ async function getAppointments() {
 
 }
 
-async function getAppointmentsByDay(therapistId,day){
-    return await Appointment.find({data:day,therapistId:therapistId})
+async function getAppointmentsByDay(therapistId, day) {
+    try {
+        const appointments = await Appointment.find({ date: day, therapistId: therapistId }).exec();
+        console.log(appointments);
+        return appointments;
+    } catch (err) {
+        console.error(err);
+        throw err; // אם אתה רוצה להעביר את השגיאה הלאה
+    }
 }
+
+// async function getAppointmentsByDay(therapistId,day){
+//     // return await Appointment.find({data:day,therapistId:therapistId})
+//   let  appointment = Appointment.find({date:data,}) 
+// }
 
 async function getAppointmentById(appointmentId) {
     return await Appointment.findById(appointmentId).populate('therapistId');

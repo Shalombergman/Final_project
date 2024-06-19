@@ -91,8 +91,8 @@ app.get('/api/appointments/:id', async (req, res) => {
 
 app.get('/api/appointments/:id/:day', async (req,res) => {
     try{
-        const appointment = await db.getAppointmentsByDay(req.params.day,req.params.id)
-        res.send(appointment);
+        const appointment = await db.getAppointmentsByDay(req.params.id,req.params.day)
+        res.json(appointment);
     }catch(error){
         res.status(500).send(error.message)
     }
@@ -105,7 +105,7 @@ app.post('/api/appointments', async (req, res) => {
     } catch (error) {
         // if (error.message === 'Appointment slot already booked') {
             // res.status(409).send(error.message);
-         
+         console.log(error);
             res.status(500).send(error.message);
     }
 })
