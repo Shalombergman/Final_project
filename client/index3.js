@@ -80,7 +80,7 @@ async function add(houer) {
      const res = await response.json()
      if(response.status == 201){
         alert("The appointment was successfully set")
-        window.location.href = "index4.html"
+        location.reload();
      }
     //  console.log(res);
 }
