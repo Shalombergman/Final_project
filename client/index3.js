@@ -1,11 +1,11 @@
 
 
-document.addEventListener("DOMContentLoaded", () => {
+
     const doctorName = document.getElementById("doctorName")
     const det = JSON.parse(localStorage.getItem("doctor"))
-    console.log(det);
+    // console.log(det);
     doctorName.innerText = `your doctor is:${det.name}`
-});
+
 
 
 

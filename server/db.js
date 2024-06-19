@@ -23,10 +23,11 @@ const therapistSchema = new Schema({
 
 const appointmentSchema = new Schema({
     therapistId: { type: String, required: true },
-    date: { type: String, required: true,unique: true },
+    date: { type: String, required: true },
     meetTime: {type:String,required:true},
     patientId: { type: String, required: true }
 });
+// appointmentSchema.index({therapistId: 1, date: 1, meetTime: 1}, {unique: 1})
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
 const Appointment = mongoose.model('Appointment', appointmentSchema);
@@ -69,15 +70,16 @@ async function getAppointmentById(appointmentId) {
 }
 
 async function createAppointment(newAppointment) {
-    try{
-        return await Appointment.create(newAppointment);
-    }
-    catch(error){
-        if(error.code === 11000){
-            throw new Error("Appointment slot already booked")
-        }
-        console.log(error);
-    }
+    return await Appointment.create(newAppointment)
+    // try{
+    //     return await Appointment.create(newAppointment);
+    // }
+    // catch(error){
+    //     if(error.code === 11000){
+    //         throw new Error("Appointment slot already booked")
+    //     }
+    //     console.log(error);
+    // }
     
 }
 

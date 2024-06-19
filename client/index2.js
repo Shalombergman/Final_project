@@ -1,4 +1,6 @@
-
+const username = document.getElementById("h2")
+const det = JSON.parse(localStorage.getItem("user"))
+username.innerText = `HI:${det.username}`
 
 function searchDoctors() {
     const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
