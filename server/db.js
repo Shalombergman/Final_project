@@ -27,7 +27,6 @@ const appointmentSchema = new Schema({
     meetTime: {type:String,required:true},
     patientId: { type: String, required: true }
 });
-// appointmentSchema.index({therapistId: 1, date: 1, meetTime: 1}, {unique: 1})
 
 const Therapist = mongoose.model('Therapist', therapistSchema);
 const Appointment = mongoose.model('Appointment', appointmentSchema);
@@ -67,7 +66,7 @@ async function getAppointmentsByDay(therapistId, day) {
         return appointments;
     } catch (err) {
         console.error(err);
-        throw err; // אם אתה רוצה להעביר את השגיאה הלאה
+        throw err; 
     }
 }
 
