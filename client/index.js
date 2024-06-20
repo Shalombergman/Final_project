@@ -14,16 +14,16 @@ function enrollmentFunction (){
 function footerDoctors (){
     window.location.href = 'index2.html'
 }
-function footerSpecializations (){
-    window.location.href = 'index2.html'
+function footerAppointments (){
+    window.location.href = 'appointment.html'
 }
-function footerLocatio (){
+function goToLocatioPage (){
     window.location.href = 'index5.html'
 }
 document.getElementById('footerEnrollment').addEventListener('click',enrollmentFunction)
 document.getElementById('footerDoctors').addEventListener('click',footerDoctors)
-document.getElementById('footerSpecializations').addEventListener('click',footerSpecializations)
-document.getElementById('footerLocation').addEventListener('click',footerLocatio)
+document.getElementById('footerAppointments').addEventListener('click',footerAppointments)
+document.getElementById('footerLocation').addEventListener('click',goToLocatioPage)
 
 async function getUserName(username, password) {
     try {

@@ -4,6 +4,23 @@ const det = JSON.parse(localStorage.getItem("user"))
 username.innerText = `Hi ${det.username}`
 
 
+function enrollmentFunction (){
+    window.location.href = 'index0.html'
+}
+function footerDoctors (){
+    window.location.href = 'index2.html'
+}
+function footerAppointments (){
+    window.location.href = 'appointments.html'
+}
+function goToLocatioPage (){
+    window.location.href = 'index5.html'
+}
+document.getElementById('footerEnrollment').addEventListener('click',enrollmentFunction)
+document.getElementById('footerDoctors').addEventListener('click',footerDoctors)
+document.getElementById('footerAppointments').addEventListener('click',footerAppointments)
+document.getElementById('footerLocation').addEventListener('click',goToLocatioPage)
+document.getElementById('locationButton').addEventListener('click',goToLocatioPage)
 
 async function getListappointments(){
     const get = JSON.parse(localStorage.getItem("user"))._id
