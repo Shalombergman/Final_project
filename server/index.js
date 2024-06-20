@@ -166,6 +166,11 @@ app.get('/api/paietnt/:id', async (req, res) => {
 });
 app.post('/api/paietnt/', async (req, res) => {
     try {
+        const user = await db.getpaietnt(req.body.username, req.body.password)
+        if (user) {
+            res.status(404).send("user exists")
+            return
+        }
         const paietnt = await db.createPatientName(req.body);
         res.status(201).send(paietnt);
     } catch (error) {

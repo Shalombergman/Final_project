@@ -23,6 +23,12 @@ document.getElementById("form").addEventListener("submit",async function(event){
        alert("The create was successfully set")
        window.location.href = "index1.html"
     }
+    else if(fatch.status == 404){
+        alert("you already exist in the system")
+        location.reload();
+    }
+
+    
         
     
 })

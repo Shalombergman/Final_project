@@ -28,6 +28,8 @@ async function getUserName(username, password) {
             alert('Invalid username or password.');
         }
     } catch (error) {
-        console.error('Error:', error);
+        // console.error('Error:', error);
+        alert('Invalid username or password.');
+        location.reload();
     }
 }
