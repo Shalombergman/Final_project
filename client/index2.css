@@ -11,7 +11,7 @@ button.re {
 }
 
 button.re:hover {
-    background-color: #e60000;
+    background-color:green;
 }
 
 
@@ -40,4 +40,17 @@ button.re:hover {
 
 .fg:nth-child(even) {
     background-color: #f2f2f2;
+}
+.ruvi{
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    
 }

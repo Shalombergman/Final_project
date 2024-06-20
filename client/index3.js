@@ -3,7 +3,6 @@
 
     const doctorName = document.getElementById("doctorName")
     const det = JSON.parse(localStorage.getItem("doctor"))
-    // console.log(det);
     doctorName.innerText = `your doctor is:${det.name}`
 
 
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function getTime(e) {
     let day = e.target.value
-    // console.log(day);
     try {
         const det = JSON.parse(localStorage.getItem("doctor"))
         const response = await fetch(`http://localhost:8080/api/appointments/${det._id}/${day}`)
@@ -46,9 +44,9 @@ function makeListTime(listHuers) {
          })
         console.log(isT);
         if (isT) {
-            ul.innerHTML += `<li>${i}:00 akipide</li>`
+            ul.innerHTML += `<li class = "ruvi">${i}:00 <b><mark>akipide</mark></b></li>`
         }
-        else { ul.innerHTML += `<li>${i}:00<button id ="${i}">Scheduled</button></li>` }
+        else { ul.innerHTML += `<li class = "fg">${i}:00<button id ="${i}" class = "re">Scheduled</button></li>` }
     }
     for (let i = 8; i < 18; i++) {
         let y = document.getElementById(i);
@@ -82,5 +80,5 @@ async function add(houer) {
         alert("The appointment was successfully set")
         location.reload();
      }
-    //  console.log(res);
+    
 }
