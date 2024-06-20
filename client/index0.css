@@ -130,3 +130,26 @@ input:focus, button:focus {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
 }
+#footerButtons {
+    display: flex;
+    justify-content: center;
+}
+.button:hover {
+    cursor: pointer;
+}
+.button {
+    margin: 5px;
+}
+footer {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
