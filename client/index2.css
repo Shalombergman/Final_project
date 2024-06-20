@@ -54,3 +54,11 @@ button.re:hover {
     
     
 }
+#divgol{
+    display: flex;
+    justify-content: center;
+}
+#gol{
+    width: 20%;
+    
+}

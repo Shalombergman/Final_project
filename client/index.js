@@ -23,7 +23,7 @@ async function getUserName(username, password) {
 
         if (data.username) {
             localStorage.setItem("user", JSON.stringify(data));
-            window.location.href = 'index2.html';
+            window.location.href = 'appointment.html';
         } else {
             alert('Invalid username or password.');
         }

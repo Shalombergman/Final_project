@@ -44,7 +44,7 @@ function makeListTime(listHuers) {
          })
         console.log(isT);
         if (isT) {
-            ul.innerHTML += `<li class = "ruvi">${i}:00 <b><mark>akipide</mark></b></li>`
+            ul.innerHTML += `<li class = "ruvi">${i}:00 <b><mark>occupied</mark></b></li>`
         }
         else { ul.innerHTML += `<li class = "fg">${i}:00<button id ="${i}" class = "re">Scheduled</button></li>` }
     }
