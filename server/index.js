@@ -10,7 +10,7 @@ app.use(cors());
 
 app.get('/api/therapists', async (req, res) => {
     try {
-        const therapists = await db.getTherapists();
+        const therapists = (await db.getTherapists());
         res.send(therapists);
     } catch (error) {
         res.status(500).send(error.message);

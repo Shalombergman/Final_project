@@ -4,7 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+#footer {
+    background-color:  rgba(0, 4, 12, 0.5);;
+}
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to right, #ff7e5f, #feb47b);
@@ -21,7 +23,9 @@ body {
     background-size: cover;
     background-position: center;
 }
-
+.button:hover {
+    cursor: pointer;
+}
 h1 {
     font-size: 3em;
     text-align: center;
@@ -53,7 +57,6 @@ h2 {
     margin: 10px;
 }
 
-}
 
 h3 {
     font-size: 1.5em;
@@ -162,4 +165,18 @@ input:focus, button:focus {
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+
+footer {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
 }
