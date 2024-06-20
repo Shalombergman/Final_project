@@ -88,7 +88,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button#patientSubmit, button#doctorSubmit, button#newPatient {
+button#submit, button#doctorSubmit, button#newPatient {
     background-color: #28a745;
     color: #fff;
 }
