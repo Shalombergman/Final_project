@@ -1,6 +1,6 @@
 const username = document.getElementById("h2")
 const det = JSON.parse(localStorage.getItem("user"))
-username.innerText = `Hi:${det.username}`
+username.innerText = `Hi ${det.username}`
 
 function searchDoctors() {
     const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
@@ -82,6 +82,9 @@ function pushDuc(doc) {
 }
 function pushSpecialization(doc) {
     const spe = document.getElementById("specialtySelect")
+    doc.sort(function(a,b){
+        return a.specialization.localeCompare(b.specialization);
+    })
     for (let i in doc) {
         let a = doc[i].specialization
         spe.innerHTML += `<option value=${a}>${a}</option>`
@@ -97,44 +100,44 @@ function save(doctor) {
 
 
 
-async function getListappointments(){
-    const get = JSON.parse(localStorage.getItem("user"))._id
-    const fatch = await fetch(`http://localhost:8080/api/appointment/patientId/${get}`)
-    const data =  await fatch.json()
-    makeMeesge(data)
- }
+// async function getListappointments(){
+//     const get = JSON.parse(localStorage.getItem("user"))._id
+//     const fatch = await fetch(`http://localhost:8080/api/appointment/patientId/${get}`)
+//     const data =  await fatch.json()
+//     makeMeesge(data)
+//  }
  
- function makeMeesge(data) {
+//  function makeMeesge(data) {
     
-    const ch = document.getElementById("uy")
-    for(let i in data){
-        let d = data[i].therapistId
-        let h = data[i].date
-        let g = data[i].meetTime
-        ch.innerHTML += `<li class = "fg">therapistId:${d} date:${h} meetTime:${g} <button id = "${i}a" class = "re">delete</button></li>`    
-    }
-    for(let i in data ){
-        document.getElementById(`${i}a`).addEventListener("click",function(event){
-            deleteAppointment(data[i]._id)
-        })
-    }
- }
- getListappointments();
+//     const ch = document.getElementById("uy")
+//     for(let i in data){
+//         let d = data[i].therapistId
+//         let h = data[i].date
+//         let g = data[i].meetTime
+//         ch.innerHTML += `<li class = "fg">therapistId:${d} date:${h} meetTime:${g} <button id = "${i}a" class = "re">delete</button></li>`    
+//     }
+//     for(let i in data ){
+//         document.getElementById(`${i}a`).addEventListener("click",function(event){
+//             deleteAppointment(data[i]._id)
+//         })
+//     }
+//  }
+//  getListappointments();
 
 
- async function deleteAppointment(appointmentId){
-    const fatch = await fetch(`http://localhost:8080/api/appointments/${appointmentId}`,{
-        method: "DELETE",
-    })
-    if(fatch.status == 204){
-       alert("The delete was successfully set")
-    location.reload();
+//  async function deleteAppointment(appointmentId){
+//     const fatch = await fetch(`http://localhost:8080/api/appointments/${appointmentId}`,{
+//         method: "DELETE",
+//     })
+//     if(fatch.status == 204){
+//        alert("The delete was successfully set")
+//     location.reload();
 
 
-    }
+//     }
         
     
-}
+// }
 
 
    
